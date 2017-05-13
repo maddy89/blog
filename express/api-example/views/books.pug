@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        title= "Books"
+        style= "li {list-style: none;font-size:1.5em;color:white;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}"
+    body(style="background-color:steelblue")
+        ul
+        each book in books
+            li(style="font-size:3em")= book.title
+            li= "Author : " + book.author
+            li= "Desc   : " + book.description
+            li= "URL    : " + book.url
+            br
+        br
+        br    
+        a(href='/', style="color:white") << Back
