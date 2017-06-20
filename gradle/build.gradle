@@ -1,0 +1,52 @@
+repositories {
+	mavenCentral()
+}
+
+apply plugin: "java" //java plugin
+
+configurations {
+	myCustomConfig
+}
+
+dependencies {
+	//compile is a comfiguration
+	compile "org.apache.commons:commons-lang3:3.0"
+	// pass this into myCustomConfig
+	myCustomConfig "org.apache.commons:commons-lang3:3.0"
+}
+
+sourceSets { //source location
+	main.java.srcDir "src"	
+}
+
+jar { 
+
+	//we can access the custom configs now
+	from configurations.myCustomConfig.collect { zipTree it }
+	
+	// take configurations and take compile
+	from configurations.compile.collect { zipTree it } // zipTreee it means : entry -> zipTree(entry)
+	// from configurations.compile.collect { fileTree("external")} //put all files into external, inside the jar
+	
+	//putting attributes into manifest
+	manifest.attributes "Main-Class": "com.Main"
+}
+
+//custom tasks - ways to define tasks
+project.task("task1")
+task("task2")
+task "task3"
+task task4
+
+task commonway << {
+	println "testing most common way of declaring tasks"
+}
+
+task hello {
+	group "greeting"
+	description "says hello" //groovy generates a getter/setter. passing the string into the setter
+
+	doLast { println 'Hello' }
+}
+
+
