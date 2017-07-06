@@ -1,3 +1,7 @@
+//------------------------------------
+// Basic stuff
+//------------------------------------
+
 repositories {
 	mavenCentral()
 }
@@ -32,21 +36,41 @@ jar {
 	manifest.attributes "Main-Class": "com.Main"
 }
 
-//custom tasks - ways to define tasks
+//------------------------------------
+//Custom tasks - ways to define tasks
+//------------------------------------
 project.task("task1")
 task("task2")
 task "task3"
 task task4
 
-task commonway << {
+task task5 << {
 	println "testing most common way of declaring tasks"
 }
 
-task hello {
-	group "greeting"
+task task6 {
 	description "says hello" //groovy generates a getter/setter. passing the string into the setter
+	group "greeting" //BUT if you assign a collection to a config closure you have to use = operator
 
 	doLast { println 'Hello' }
 }
+
+//------------------------------------
+// task dependencies and ordering
+//------------------------------------
+task firstTask {
+	doLast { println 'first' }
+}
+
+task thirdTask {
+	doLast { println 'third' }
+}
+
+task secondTask {
+	dependsOn "firstTask" //execute firstTask first
+	finalizedBy "thirdTask" //exectue thirdAsk after
+	doLast { println 'second' }
+}
+
 
 
