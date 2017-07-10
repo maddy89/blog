@@ -11,7 +11,10 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule); 
 /*
+Execution Order
 1. main.ts gets excuted first
 2. boostrap app.module.ts (is to be loaded first)
-3. load app component upon start
+3. analyze app component upon start
+4. selector tells to look for <app-root></app-root> in index.html
+5. insert app component(app.component.html) into <app-root>
 */
