@@ -1,6 +1,6 @@
-+-+-+-+-+-+-+-+
-|Angular Notes|
-+-+-+-+-+-+-+-+
++-+-+-+-+-+-+-+-+
+| Angular Notes |
++-+-+-+-+-+-+-+-+
 
 1. Basics
 =========
@@ -116,3 +116,7 @@ Event Binding: - when binding events to model
   class="btn btn-primary" [disabled]="!allowNew"
   (click) = "onCreateServer()">
   Add Server</button>
+
+
+3. Directives
+=============
